@@ -38,13 +38,13 @@
 	├── README.md
 	└── week1
 	    ├── 1111_PrintStar
-	    │   ├── PrintStar_kim.cpp
-	    │   ├── PrintStar_nam.cpp
-	    │   └── PrintStar_oh.cpp
+	    │   ├── PrintStar_seogki.cpp
+	    │   ├── PrintStar_youngwoo.cpp
+	    │   └── PrintStar_sihwan.cpp
 	    └── 1234_fibonacci
-		├── fibonacci_kim.cpp
-		├── fibonacci_nam.cpp
-		└── fibonacci_oh.cpp
+		├── fibonacci_seogki.cpp
+		├── fibonacci_youngwoo.cpp
+		└── fibonacci_sihwan.cpp
 
 	3 directories, 7 files
 	```
