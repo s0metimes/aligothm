@@ -27,28 +27,29 @@
 	-	각각 작성하는 파일명은 **[문제번호]\_[제목요약]\_[이름].cpp** 으로 관리
 	-	각 주차 내에서 개념으로 분류할만한 것은 개념폴더로 만들어서 관리  
 
-<details open><summary><b>폴더구조</b></summary>
+* **폴더구조**
+	<details open><summary></summary>
 
-```
-~/Desktop/Computer/Algorithm/aligothm youngwoo*
+	```
+	~/Desktop/Computer/Algorithm/aligothm youngwoo*
 
-❯ tree
-.
-├── README.md
-└── week1
-    ├── 1111_PrintStar
-    │   ├── PrintStar_kim.cpp
-    │   ├── PrintStar_nam.cpp
-    │   └── PrintStar_oh.cpp
-    └── 1234_fibonacci
-        ├── fibonacci_kim.cpp
-        ├── fibonacci_nam.cpp
-        └── fibonacci_oh.cpp
+	❯ tree
+	.
+	├── README.md
+	└── week1
+	    ├── 1111_PrintStar
+	    │   ├── PrintStar_kim.cpp
+	    │   ├── PrintStar_nam.cpp
+	    │   └── PrintStar_oh.cpp
+	    └── 1234_fibonacci
+		├── fibonacci_kim.cpp
+		├── fibonacci_nam.cpp
+		└── fibonacci_oh.cpp
 
-3 directories, 7 files
-```
+	3 directories, 7 files
+	```
 
-</details>
+	</details>
 
 -	<b>GIT</b>
 
