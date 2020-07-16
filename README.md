@@ -1,4 +1,4 @@
-###### **Algorithms study** with CSE students
+##### **Algorithms study** with CSE students
 
 -	팀원 : 김석기, 남영우, 오시환
 
