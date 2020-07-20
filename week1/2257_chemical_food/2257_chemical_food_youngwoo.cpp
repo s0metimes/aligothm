@@ -1,96 +1,138 @@
 #include <stdio.h>
-#include <stack>
-using namespace std;
-
-char str[100];
-
-int cToInt(char c);
-
-int main(int argc, char const *argv[])
-{
-    stack<char> st;
-    int sum = 0;
-    bool isInBracket = false;
-    int mid = 0;
-    char bef = '*';
-    scanf("%s", str);
-
-    for(int i = 0; str[i] != '\0'; i++) {
-        if(!isInBracket) {
-            if(str[i] == '(') {
-                if(bef == ')') sum += mid;
-                else sum += cToInt(bef);
-                if(!st.empty()) st.pop();
-                mid = 0;
-                isInBracket = true;
-                bef = '(';
-            }
-            else if(str[i] <= '9' && str[i] >= '2'){
-                if(!st.empty()) {
-                    st.pop(); 
-                    sum += cToInt(bef) * (str[i] - '0');
-                } else 
-                    sum += mid * (str[i] - '0');
-                bef = str[i];
-            } else {    //C,H,O
-                if(bef == ')') {
-                    sum += mid;
-                    st.push(str[i]);
-                    bef = st.top();
-                } else { // bef가 C,H,O중 일때
-                    if(!st.empty()) {
-                        sum += cToInt(bef);
-                        st.pop();
-                        st.push(str[i]);
-                        bef = st.top();
-                    } else {
-                        st.push(str[i]);
-                        bef = st.top();
-                    }
-                }
-            }
-        } else {    //괄호 안 일때 
-            if(str[i] <= '9' && str[i] >= '2'){
-                st.pop();
-                mid += cToInt(bef) * (str[i] - '0');
-                bef = str[i];
-            } else if(str[i] == ')') {
-                isInBracket = false;
-                if(bef <= '9' && bef >= '2') {
-                    bef = ')';
-                } else if(bef == '('){
-                    isInBracket = false;
-                } else { //C,H,O
-                    mid += cToInt(bef);
-                    st.pop();
-                    bef = ')';
-                }
-            } else { //C,H,O
-                if(!st.empty()) {
-                    mid += cToInt(bef);
-                    st.pop();
-                    st.push(str[i]);
-                    bef = st.top();
-                } else {
-                    st.push(str[i]);
-                    bef = st.top();
-                }
-            }
+#include <string.h>
+ 
+int st[100], st_cnt, tmp;
+char buf[101];
+ 
+int main() {
+    scanf("%s", buf);
+    int l = strlen(buf);
+ 
+    for (int i = 0; i < l; ++i) {
+        char c = buf[i];
+ 
+        if (c == 'H') {
+            tmp = 1;
+            st[st_cnt] += 1;
         }
+        else if (c == 'C') {
+            tmp = 12;
+            st[st_cnt] += 12;
+        }
+        else if (c == 'O') {
+            tmp = 16;
+            st[st_cnt] += 16;
+        }
+            
+ 
+        else if (c == '(')
+            st[++st_cnt] = 0;
+        else if (c == ')') {
+            tmp = st[st_cnt--];
+            st[st_cnt] += tmp;
+        }
+ 
+        else if ('1' < c && c <= '9')
+            st[st_cnt] += tmp * (c - '1');
     }
-    if(bef == ')') sum += mid;
-    else sum += cToInt(bef);
-
-    printf("%d\n", sum);
+    printf("%d", st[0]);
     return 0;
 }
 
-int cToInt(char c) {
-    if(c == 'O') return 16;
-    else if(c == 'C') return 12;
-    else if(c == 'H') return 1;
-    else return 0;
-}
+
+// #include <stdio.h>
+// #include <stack>
+// using namespace std;
+
+// char str[100];
+
+// int cToInt(char c);
+
+// int main(int argc, char const *argv[])
+// {
+//     stack<char> st;
+//     int sum = 0;
+//     bool isInBracket = false;
+//     int mid = 0;
+//     char bef = '*';
+//     scanf("%s", str);
+
+//     for(int i = 0; str[i] != '\0'; i++) {
+//         if(!isInBracket) {
+//             if(str[i] == '(') {
+//                 if(bef == ')') sum += mid;
+//                 else sum += cToInt(bef);
+//                 if(!st.empty()) st.pop();
+//                 mid = 0;
+//                 isInBracket = true;
+//                 bef = '(';
+//             }
+//             else if(str[i] <= '9' && str[i] >= '2'){
+//                 if(!st.empty()) {
+//                     st.pop(); 
+//                     sum += cToInt(bef) * (str[i] - '0');
+//                 } else 
+//                     sum += mid * (str[i] - '0');
+//                 bef = str[i];
+//             } else {    //C,H,O
+//                 if(bef == ')') {
+//                     sum += mid;
+//                     st.push(str[i]);
+//                     bef = st.top();
+//                 } else { // bef가 C,H,O중 일때
+//                     if(!st.empty()) {
+//                         sum += cToInt(bef);
+//                         st.pop();
+//                         st.push(str[i]);
+//                         bef = st.top();
+//                     } else {
+//                         st.push(str[i]);
+//                         bef = st.top();
+//                     }
+//                 }
+//             }
+//         } else {    //괄호 안 일때 
+//             if(str[i] <= '9' && str[i] >= '2'){
+//                 st.pop();
+//                 mid += cToInt(bef) * (str[i] - '0');
+//                 bef = str[i];
+//             } else if(str[i] == ')') {
+//                 isInBracket = false;
+//                 if(bef <= '9' && bef >= '2') {
+//                     bef = ')';
+//                 } else if(bef == '('){
+//                     isInBracket = false;
+//                 } else { //C,H,O
+//                     mid += cToInt(bef);
+//                     st.pop();
+//                     bef = ')';
+//                 }
+//             } else { //C,H,O
+//                 if(!st.empty()) {
+//                     mid += cToInt(bef);
+//                     st.pop();
+//                     st.push(str[i]);
+//                     bef = st.top();
+//                 } else {
+//                     st.push(str[i]);
+//                     bef = st.top();
+//                 }
+//             }
+//         }
+//     }
+//     if(bef == ')') sum += mid;
+//     else sum += cToInt(bef);
+
+//     printf("%d\n", sum);
+//     return 0;
+// }
+
+// int cToInt(char c) {
+//     if(c == 'O') return 16;
+//     else if(c == 'C') return 12;
+//     else if(c == 'H') return 1;
+//     else return 0;
+// }
 
 // #include <stdio.h>
 // #include <stack>

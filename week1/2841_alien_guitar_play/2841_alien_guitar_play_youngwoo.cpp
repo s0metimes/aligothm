@@ -10,8 +10,6 @@ int main(int argc, char const *argv[])
     scanf("%d %d", &N, &P);
     for(; N > 0; N--) {
         scanf("%d %d", &line, &flat);
-        if(P < flat)
-            continue;
         if(lines[line].empty()) { // 만약 비어있다면, 즉, 해당 줄이 아무것도 안눌렸다면,
             lines[line].push(flat);
             cnt++;
