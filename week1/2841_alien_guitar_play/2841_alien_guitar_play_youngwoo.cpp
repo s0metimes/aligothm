@@ -14,27 +14,65 @@ int main(int argc, char const *argv[])
             lines[line].push(flat);
             cnt++;
         } else { // 하나라도 눌려있다면
-            if(lines[line].top() < flat) {  // 누를 flat이 기존보다 높다면
-                lines[line].push(flat);
-                cnt++;
-            } else if(lines[line].top() > flat) { // 무언가 때야한다면,
-                while(!lines[line].empty() && lines[line].top() > flat) { // 탑이 가장 큰 값이므로, 큰것부터 뺀다.
+            while(!lines[line].empty()) {
+                if(lines[line].top() > flat) {
                     lines[line].pop();
                     cnt++;
-                }
-                if(lines[line].empty()) { // 전부다 뺐다면
-                    lines[line].push(flat);
-                    cnt++;
-                }
-                else if(lines[line].top() != flat) { // flat보다 큰거 다 빼고나서 flat이 눌려있는지 체크
-                    lines[line].push(flat);
-                    cnt++;
-                }
+                } else if(lines[line].top() <= flat) break; 
+            }
+
+            if(lines[line].empty()) {
+                lines[line].push(flat);
+                cnt++;
+            } else if(lines[line].top() < flat) {
+                lines[line].push(flat);
+                cnt++;
             }
         }
     }
+    printf("%d\n", cnt);
     return 0;
 }
+
+
+// #include <stdio.h>
+// #include <stack>
+// using namespace std;
+// int main(int argc, char const *argv[])
+// {
+//     stack<int> lines[7];
+//     int N, P, line, flat;
+//     int cnt = 0;
+
+//     scanf("%d %d", &N, &P);
+//     for(; N > 0; N--) {
+//         scanf("%d %d", &line, &flat);
+//         if(lines[line].empty()) { // 만약 비어있다면, 즉, 해당 줄이 아무것도 안눌렸다면,
+//             lines[line].push(flat);
+//             cnt++;
+//         } else { // 하나라도 눌려있다면
+//             if(lines[line].top() < flat) {  // 누를 flat이 기존보다 높다면
+//                 lines[line].push(flat);
+//                 cnt++;
+//             } else if(lines[line].top() > flat) { // 무언가 때야한다면,
+//                 while(!lines[line].empty() && lines[line].top() > flat) { // 탑이 가장 큰 값이므로, 큰것부터 뺀다.
+//                     lines[line].pop();
+//                     cnt++;
+//                 }
+//                 if(lines[line].empty()) { // 전부다 뺐다면
+//                     lines[line].push(flat);
+//                     cnt++;
+//                 }
+//                 else if(lines[line].top() != flat) { // flat보다 큰거 다 빼고나서 flat이 눌려있는지 체크
+//                     lines[line].push(flat);
+//                     cnt++;
+//                 }
+//             }
+//         }
+//     }
+//     printf("%d\n", cnt);
+//     return 0;
+// }
 
 
 // 2nd try
