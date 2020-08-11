@@ -35,5 +35,3 @@ int main(int argc, char const *argv[])
     printf("%d\n", sum);
     return 0;
 }
-
-
