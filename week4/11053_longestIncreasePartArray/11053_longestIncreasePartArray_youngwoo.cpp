@@ -1,46 +1,72 @@
 #include <stdio.h>
 #include <algorithm>
 #define MAX 1000
-
-using namespace std;
-
-bool arr[MAX+1][MAX+1];
-int nums[MAX+1];
-int incre[MAX+1];
-int dp[MAX+1];
+int N;
+int dp[MAX]; //dp[i] i번째 num을 시작으로, 만들수 있는 최대 길이 
+int num[MAX];
 
 int main(int argc, char const *argv[])
 {
-    int N;
     scanf("%d", &N);
-    for(int i = 0; i < N; i++) 
-        scanf("%d", &nums[i]);
 
-    for(int i = 0; i < N; i++) {
-        int big = 0;
-        for(int j = i+1; j < N; j++) 
-            if(nums[i] < nums[j]) big++;
-        incre[i] = big;
+    for(int i = 0; i < N; i++)
+        scanf("%d", &num[i]);
+
+    dp[N-1] = 1;
+    for(int r_i = N-2; r_i >= 0; r_i--) {
+        for(int c_i = r_i+1; c_i < N; c_i++) 
+            if(num[r_i] < num[c_i] && dp[r_i] < dp[c_i]) 
+                dp[r_i] = dp[c_i];
+        dp[r_i]++;
     }
-
-    for(int y = 0; y < N; y++)
-        for(int x = y+1; x < N; x++) 
-            if(nums[y] < nums[x]) arr[y][x] = true;
-
-    for(int ridx = N-1; ridx >= 0; ridx--) {
-        if(incre[ridx] == 0) dp[ridx] = 1;
-        else {
-            int max = 0;
-            for(int ch = ridx+1; ch < N; ch++) 
-                if(arr[ridx][ch] && dp[ch] > max) max = dp[ch];
-            dp[ridx] = max+1;
-        }
-    }
-
-    printf("%d", *max_element(dp, dp+N));
-
+    
+    printf("%d", *std::max_element(dp, dp+N));
     return 0;
 }
+
+// #include <stdio.h>
+// #include <algorithm>
+// #define MAX 1000
+
+// using namespace std;
+
+// bool arr[MAX+1][MAX+1];
+// int nums[MAX+1];
+// int incre[MAX+1];
+// int dp[MAX+1];
+
+// int main(int argc, char const *argv[])
+// {
+//     int N;
+//     scanf("%d", &N);
+//     for(int i = 0; i < N; i++) 
+//         scanf("%d", &nums[i]);
+
+//     for(int i = 0; i < N; i++) {
+//         int big = 0;
+//         for(int j = i+1; j < N; j++) 
+//             if(nums[i] < nums[j]) big++;
+//         incre[i] = big;
+//     }
+
+//     for(int y = 0; y < N; y++)
+//         for(int x = y+1; x < N; x++) 
+//             if(nums[y] < nums[x]) arr[y][x] = true;
+
+//     for(int ridx = N-1; ridx >= 0; ridx--) {
+//         if(incre[ridx] == 0) dp[ridx] = 1;
+//         else {
+//             int max = 0;
+//             for(int ch = ridx+1; ch < N; ch++) 
+//                 if(arr[ridx][ch] && dp[ch] > max) max = dp[ch];
+//             dp[ridx] = max+1;
+//         }
+//     }
+
+//     printf("%d", *max_element(dp, dp+N));
+
+//     return 0;
+// }
 
 // #include <stdio.h>
 // #include <vector>
