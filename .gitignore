@@ -4,3 +4,4 @@
 .DS_Store
 test.cpp
 test*.cpp
+*test*.*
