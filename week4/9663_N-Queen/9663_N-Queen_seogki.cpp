@@ -7,11 +7,6 @@ int cnt, N;
 // 1 : left cross 2 : right cross 4: down
 void bt(int depth, vector<int> visit)
 {
-    // printf("depth is %d\n", depth);
-    // for (auto i : visit)
-    //     printf("%d ", i);
-    // printf("\n");
-
     vector<int> next(N);
     if (depth == N-1)
     {
