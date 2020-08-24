@@ -42,7 +42,7 @@ int main()
             if (i == j || MAP[i][j] == INF)
                 printf("0 ");
             else
-                printf("%d", MAP[i][j])
+                printf("%d ", MAP[i][j]);
         }
         printf("\n");
     }

@@ -48,6 +48,7 @@ int main()
             }
         }
     }
+    
     for (int i = 0; i < N; i++)
         printf("%lld ", dist[i]);
     printf("\n");

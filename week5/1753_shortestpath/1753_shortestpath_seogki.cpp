@@ -51,6 +51,7 @@ int main()
 			}
 		}
 	}
+    
 	for (int i = 1; i <= v; i++) {
 		if (dist[i] == INF)
 			printf("INF\n");
