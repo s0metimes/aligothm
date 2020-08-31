@@ -11,29 +11,36 @@ using namespace std;
 
 
 int dist[MAXN];
-vector<pair<int, Pii> > edges;
+vector<Pii> edges[MAXN];
 
 
 bool bellmanFord(int N) {
     int i, j, k;
     
     for(i = 1; i < N; i++) {
-        for(auto iter = edges.begin(); iter != edges.end(); ++iter) {
-            pair<int, Pii> p = (*iter);
-            int from = p.first;
-            int to = p.second.first;
-            int weight = p.second.second;
-            if(dist[from] != INF && dist[to] > dist[from] + weight)
-                dist[to] = dist[from] + weight;
+        for(j = 0; j < N; j++) {
+            for(auto iter = edges[j].begin(); iter != edges[j].end(); ++iter) {
+                Pii p = (*iter);
+                int from = j;
+                int to = p.first;
+                int weight = p.second;
+
+                if (dist[to] > dist[from] + weight)
+                    dist[to] = dist[from] + weight;
+            }
         }
     }
-    for(auto iter = edges.begin(); iter != edges.end(); ++iter) {
-        pair<int, Pii> p = (*iter);
-        int from = p.first;
-        int to = p.second.first;
-        int weight = p.second.second;
-        if(dist[from] != INF && dist[to] > dist[from] + weight)
-            return false;
+    
+    for(j = 0; j < N; j++) {
+        for(auto iter = edges[j].begin(); iter != edges[j].end(); ++iter) {
+            Pii p = (*iter);
+            int from = j;
+            int to = p.first;
+            int weight = p.second;
+
+            if(dist[to] > dist[from] + weight)
+                return false;
+        }
     }
     
 
@@ -58,22 +65,23 @@ int main(void) {
             dist[j] = INF;
         dist[0] = 0;
 
-        edges.clear();
+        for(j = 0; j < N; j++)
+            edges[j].clear();
 
         for(j = 0; j < M; j++) {
             scanf("%d %d %d", &S, &E, &T);
-            edges.push_back(make_pair(S-1, make_pair(E-1, T)));
-            edges.push_back(make_pair(E-1, make_pair(S-1, T)));
+            edges[S-1].push_back(make_pair(E-1, T));
+            edges[E-1].push_back(make_pair(S-1, T));
         }
 
         for(j = 0; j < W; j++) {
             scanf("%d %d %d", &S, &E, &T);
-            edges.push_back(make_pair(S-1, make_pair(E-1, -T)));
+            edges[S-1].push_back(make_pair(E-1, -T));
         }
 
         isCycle = !(bellmanFord(N));
         
-        isCycle ? printf("YES") : printf("NO");
+        isCycle ? printf("YES\n") : printf("NO\n");
     }
 
     return 0;
