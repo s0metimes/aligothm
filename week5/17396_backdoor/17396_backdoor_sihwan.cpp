@@ -78,6 +78,7 @@ int main(void)
     // initialize
     j = N; while (j--) dist[j] = INF;
     dist[0] = 0;
+    
     dijkstra(0);
 
     if(dist[N-1] == INF)
