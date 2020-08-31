@@ -2,6 +2,7 @@
 #include <queue>
 #include <algorithm>
 #define MAX 100000
+
 using namespace std;
 typedef pair< int, int > Pii;
 priority_queue< Pii > edges;
@@ -47,7 +48,6 @@ void printResult(bool isTree, int k) {
 
 int main(int argc, char const *argv[])
 {
-    /* code */
     int u = 1, v = 1, k = 1;
 
     init();
