@@ -7,6 +7,7 @@
 #define FRIEND 1
 #define NO 500
 using namespace std;
+
 vector< int > minInMax(MAX);
 vector< int > g(MAX, 0);
 vector< vector< int > > group(MAX);
@@ -18,6 +19,12 @@ int N;
 bool flag = false;
 
 void Grouping() {
+    for(int s = 1; s <= N; s++) {
+        if(g[s] != 0) continue;
+        gNum++; 
+        dfs(s);
+    }
+
     for(int k = 1; k <= gNum; k++) 
         for(int i = 1; i <= N; i++) 
             if(g[i] == k) group[k].push_back(i);
@@ -58,12 +65,6 @@ int main(int argc, char const *argv[])
         scanf("%d %d", &p1, &p2);
         cost[p1][p2] = 1;
         cost[p2][p1] = 1;
-    }
-
-    for(int s = 1; s <= N; s++) {
-        if(g[s] != 0) continue;
-        gNum++; 
-        dfs(s);
     }
     
     Grouping();
