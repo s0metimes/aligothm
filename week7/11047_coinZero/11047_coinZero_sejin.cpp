@@ -3,11 +3,11 @@ using namespace std;
 
 int A[11];
 
-//K¸¦ arrÀÇ °¡Àå Å« °ªºÎÅÍ °¡´ÉÇÑ ³ª´« È½¼ö¸¦ ¸®ÅÏÇÑ´Ù.
+//Kï¿½ï¿½ arrï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Å« ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ È½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
 int sol(int K, int arr[], int maxIndex){
     
     
-    int temp =  K / arr[maxIndex]; // ¸î ¹ø ³ª´«°ÇÁö
+    int temp =  K / arr[maxIndex]; // ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     int remainder = K %arr[maxIndex];
     if(remainder ==0)
         return temp;

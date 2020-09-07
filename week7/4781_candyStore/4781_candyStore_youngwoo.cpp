@@ -36,10 +36,10 @@ int main(int argc, char const *argv[])
 
 int ftoi(float price) { return (int)(price*100); }
 
-void unboundedKnapsack(int N, int iBudget) {
+void knapsack(int N, int iBudget) {
     for(int k = 0; k < N; k++) 
         // k+1 번째 사탕을 넣을지 않넣을지에 따라 dp 수정
         for(int now = 1; now <= iBudget; now++)   // now : 가지고 있는 돈
-            if(now >= ftoi(price[k+1])) // dp의 now 이전의 값들은 k+1을 1개이상 넣었을때 최댓값이다. 
+            if(now >= ftoi(price[k+1])) 
                 dp[now] = std::max(dp[now], dp[ now-ftoi(price[k+1]) ] + calorie[k+1]);  
 }
