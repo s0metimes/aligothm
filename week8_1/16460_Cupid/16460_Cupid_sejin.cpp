@@ -1,6 +1,7 @@
 #include<iostream>
 #include<string>
 #include<vector>
+#include<algorithm>
 using namespace std;
 //맞는거 같은데 왜 틀리지.. 
 typedef struct User{
@@ -59,6 +60,7 @@ int main(int argc, char const *argv[])
         cout<<"No one yet";
     }
     else{
+        sort(ans.begin(),ans.end());
         for(string x : ans)
             cout << x <<"\n";
     }
