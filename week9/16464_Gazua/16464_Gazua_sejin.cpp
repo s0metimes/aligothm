@@ -1,38 +1,33 @@
 #include<iostream>
 #include<set>
 using namespace std;
-set<int> s;
-int arr[1001][1001]; 
 
 bool isPossible(int K){
-    int temp =0;
-    for(int i = 2; i <1001; i++){
-        for(int j =2; j<1001; j++){
-            int sum =0;
-            for(int k = i; k<=j; k++){
-                sum+= k;
-            }
-            s.insert(sum);
+    //K가 3 이상의 홀수일 경우 2a+1(a < k)의 형태이다. 항상 존재함
+    if(K%2 == 1)
+        return true;
+
+    //K가 짝수인 경우. 카드 2개를 뽑으면 2a+1 꼴이라 안됨. 최소 3개는 뽑아야 합니다.
+    for(int n = 3; n*(n+1)/2 <= K; n++){
+        if(n % 2 == 0){ //짝수개를 뽑은 경우
+            if((K-n/2) % n == 0)
+                return true;
+        }else{//홀수개를 뽑은 경우
+            if(K%n == 0)
+                return true;
         }
     }
-    
-    bool ans = s.insert(K).second == false;
-    s.clear();
-    return ans;
+    return false;
 }
 
 int main(){
-    int N; scanf("%d",&N);
-
-    
-
-
+    //테스트 케이스 수.
+    int N; 
+    scanf("%d",&N);
 
     while(N--){
         int K; scanf("%d",&K);
-        
         printf("%s", isPossible(K) ? "Gazua\n": "GoHanGang\n");
-        
         //나올 수 있는 값을 바이너리 서치트리에 다때려박고 찾는다. 
         
     }
