@@ -1,8 +1,6 @@
 #include <stdio.h>
 
-int yunYear = 2016;
 int daysInMonthArr[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-int days[7] = {0,1,2,3,4,5,6}; // <일, 월, 화, 수, 목, 금, 토>
 
 bool isYun(int year) {
     if(year%400 == 0) return true;
@@ -19,22 +17,21 @@ void calculate(int targetYear) {
     int month = 9;
     int year = 2019;
     int cnt = 1;
-    // printf("year : 2019 month : 9\n");
     while(year <= targetYear) {
-        int daysInMonth;
+        int daysInMonth; // 해당하는 달의 총 일수 
+        // 2월인경우는 윤년인지 아닌지, 체크해줘야한다. 
         if(month == 2) daysInMonth = isYun(year) ? daysInMonthArr[month-1]+1 : daysInMonthArr[month-1];
         else daysInMonth = daysInMonthArr[month-1];
-
+        // 다음달 13일의 요일은 확인해야한다.
+        // 이번달 13일과 다음달 13일의 일수 차이는 이번달의 총 일수와 같다.
         day = (day + (daysInMonth) % 7) % 7;
+
         if(month == 12) {year++; month = 1;} // 내년으로 바뀌는 경우
-        else month++;
-
+        else month++; // 해가 바뀌지 않는경우는 month++
+        // 해가 바뀌었을때, targetYear를 넘어선다면, cnt를 증가시키지않고 break
+        // 그렇지 않다면, 다음달13일의 요일을 확인후, 금요일이면 cnt++
         if(year > targetYear) break;
-
-        if(day == 5) {
-            // printf("year : %d month : %d\n", year, month);
-            cnt++;
-        }
+        else if(day == 5) cnt++;
     }
 
     printf("%d\n", cnt);
@@ -48,4 +45,3 @@ int main(int argc, char const *argv[])
     calculate(targetYear);
     return 0;
 }
-
